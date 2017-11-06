@@ -1,0 +1,44 @@
+//
+//  BuDeJie.pch
+//  BuDeJie
+//
+//  Created by 王辉 on 2017/7/29.
+//  Copyright © 2017年 ronaldo. All rights reserved.
+//
+/*
+    1.存放公用宏
+    2.存放公用文件
+    3.自定义Log
+    步骤：1.提前编译Pch
+ */
+
+#import "UIView+Frame.h"
+#import "UIBarButtonItem+Item.h"
+#import "WHConst.h"
+#import "UIImage+Image.h"
+
+//真机无法生成，是能选择模拟器  @#filename -> @"filename"
+#define WHAFNWriteToPlist(filename) [responseObject writeToFile:[NSString stringWithFormat:@"/Users/wanghui/Desktop/%@.plist",@#filename] atomically:YES]
+
+#define WHColor(r,g,b) [UIColor colorWithRed:(r) / 256.0 green:(g) / 256.0 blue:(b) / 256.0 alpha:1]
+#define WHGrayColor(v) WHColor(v,v,v)
+#define WHRandomColor WHColor(arc4random_uniform(255), arc4random_uniform(255), arc4random_uniform(255))
+/****************屏幕适配*******************/
+#define WHScreenW [UIScreen mainScreen].bounds.size.width
+#define WHScreenH [UIScreen mainScreen].bounds.size.height
+#define iphone6p (WHScreenH == 736)
+#define iphone6 (WHScreenH == 667)
+#define iphone5 (WHScreenH == 568)
+#define iphone4 (WHScreenH == 480)
+/****************屏幕适配*******************/
+
+#ifdef DEBUG//调试阶段
+
+#define WHFunc NSLog(@"%s",__func__)
+#define WHLog(...) NSLog(__VA_ARGS__)
+
+#else//发布阶段
+
+#define WHLog(...)
+
+#endif
